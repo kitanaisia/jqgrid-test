@@ -1,0 +1,85 @@
+<script type="text/javascript">
+// ############ jqGrid Table
+var mydata = [
+{id:01, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample01"},
+{id:02, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample02"},
+{id:03, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample03"},
+{id:04, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample04"},
+{id:05, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample05"},
+{id:06, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample06"},
+{id:07, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample07"},
+{id:08, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample08"},
+{id:09, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample09"},
+{id:10, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample10"},
+{id:11, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample11"},
+{id:12, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample12"},
+{id:13, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample13"},
+{id:14, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample14"},
+{id:15, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample15"},
+{id:16, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample16"},
+{id:17, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample17"},
+{id:18, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample18"},
+{id:19, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample19"},
+{id:20, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample20"},
+{id:21, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample21"},
+{id:22, invdate:"2017/01/01", name:"kitanaisia", amount:3.14, tax: 1.08, total:419, note: "sample22"}
+];
+
+jQuery(document).ready(function(){
+  $("#jqGrid01").jqGrid({
+    data: mydata,
+    datatype: "local",
+    height: 250,
+    rowNum: 10,
+    rowList: [10,20,30],
+    colNames:['Inv No','Date', 'Client', 'Amount','Tax','Total','Notes'],
+    colModel:[
+    {name:'id',index:'id', width:60, sorttype:"int",search:true},
+    {name:'invdate',index:'invdate', width:90, sorttype:"date", formatter:"date"},
+    {name:'name',index:'name', width:100},
+    {name:'amount',index:'amount', width:80, align:"right",sorttype:"float", formatter:"number"},
+    {name:'tax',index:'tax', width:80, align:"right",sorttype:"float"},        
+    {name:'total',index:'total', width:80,align:"right",sorttype:"float"},        
+    {name:'note',index:'note', width:150, sortable:false}        
+    ],
+    pager: "#jqGridPager01",
+    viewrecords: true,
+    caption: "Sample jqGrid Table",
+    hidegrid:false,
+    altRows: true                
+  });
+  $("#jqGrid01")
+  .jqGrid('filterToolbar',{defaultSearch:true,stringResult:true})
+  .jqGrid('setSelection', '3');
+});
+
+</script>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Tests</h1>
+
+<table id="jqGrid01"></table>
+<table id="jqGridPager01"></table>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tests.each do |test| %>
+      <tr>
+        <td><%= link_to 'Show', test %></td>
+        <td><%= link_to 'Edit', edit_test_path(test) %></td>
+        <td><%= link_to 'Destroy', test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Test', new_test_path %>
